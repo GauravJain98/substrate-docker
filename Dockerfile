@@ -1,6 +1,10 @@
 FROM ubuntu:20.04
 LABEL name="Gaurav Jain"
 LABEL maintainer="https://github.com/GauravJain98"
+ENV TZONE=Asia/Kolkata
+ENV LANG=en_IN.UTF-8
+ENV LANGUAGE en_IN
+RUN ln -snf /usr/share/zoneinfo/$TZONE /etc/localtime && echo $TZONE > /etc/timezone
 
 
 # Install build dependencies
@@ -20,7 +24,7 @@ RUN rustup update nightly & \
     rustup update stable &\
     rustup target add wasm32-unknown-unknown --toolchain nightly
 
-COPY . /substrate-node
+RUN git clone https://github.com/substrate-developer-hub/substrate-node-template /substrate-node
 WORKDIR /substrate-node
 
 RUN cargo clean
