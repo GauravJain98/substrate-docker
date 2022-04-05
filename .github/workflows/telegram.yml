@@ -26,6 +26,9 @@ jobs:
 
       - name: Install Rustup
         run: |
+          git clone https://github.com/substrate-developer-hub/substrate-node-template sub
+          mv sub/* .
+          rm sub 
           curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
           source ~/.cargo/env
           rustup default stable
