@@ -34,15 +34,16 @@ jobs:
           rustup target add wasm32-unknown-unknown --toolchain nightly
 
       - name: Check Build
-        working-directory: ./substrate-node-template
         run: |
+          cd substrate-node-template
           SKIP_WASM_BUILD=1 cargo check --release
           pushd node &&
           cargo check --features=runtime-benchmarks --release
 
       - name: Run Test
-        working-directory: ./substrate-node-template
-        run: cargo test
+        run: |
+          cd substrate-node-template
+          cargo test
       
 
       - name: Docker build and push 
