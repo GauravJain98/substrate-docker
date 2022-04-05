@@ -20,7 +20,7 @@ RUN rustup update nightly & \
     rustup update stable &\
     rustup target add wasm32-unknown-unknown --toolchain nightly
 
-ADD substrate-node-template /substrate-node
+COPY . /substrate-node
 WORKDIR /substrate-node
 
 RUN cargo clean
