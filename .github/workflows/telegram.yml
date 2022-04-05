@@ -36,6 +36,7 @@ jobs:
       - name: Check Build
         run: |
           cd substrate-node-template
+          ls
           SKIP_WASM_BUILD=1 cargo check --release
           pushd node &&
           cargo check --features=runtime-benchmarks --release
